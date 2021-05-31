@@ -1,17 +1,119 @@
 
 #include <iostream>
-#include <string.h>
+#include <string>
 #include "add.hpp"
 #include "Object.hpp"
+#include <map>
+#include <vector>
+#include <sstream>
+
+
+//MARK: Vectors
+//function to print vector using *pointer
+//void print_vector(std::vector<std::string> *str_v)
+//{
+//    for( int i = 0; i < str_v->size(); i++)
+//    {
+//        std::cout << "Element of vector: " << str_v -> at(i) << std::endl;
+//    }
+//}
+//
+//int main()
+//{
+//    std::vector<std::string> str_v ={"What", "The", "Fox"};
+//
+//    //print_vector(&str_v);
+//
+//    //doing things to vector
+//    str_v.push_back("new element"); //puts element at end of list
+//    str_v.erase(str_v.begin()+2); //erases third element from list = "Fox"
+//
+//    print_vector(&str_v); //Output: What, The, new element
+//    return 0;
+//}
+
+///MARK: Maps and vectors
+//
+//int main()
+//{
+//    std::map<int, std::string> numbers;
+//    numbers.insert(std::pair<int, std::string>(0, "zero"));
+//    numbers.insert(std::pair<int, std::string>(1, "one"));
+//    numbers.insert(std::pair<int, std::string>(2, "two"));
+//    numbers.insert(std::pair<int, std::string>(3, "three"));
+//    numbers.insert(std::pair<int, std::string>(4, "four"));
+//
+//
+//    //std::map<int, std::string>::iterator itr = numbers.begin(); //iterator for map
+//
+//    std::vector<std::string> str_v ={"10", "What", "The", "3", "4", "12"};
+//
+//    //looping the vector and find numer in vector!
+//    for (auto &item : str_v)
+//    {
+//        int key;
+//        std::stringstream ss(item);
+//        if (ss >> key)
+//        {
+//            auto itr = numbers.find(key);
+//            if (itr != numbers.end())
+//                item = itr->second;
+//        }
+//        std::cout << item << std::endl;
+//    }
+//
+//    return 0;
+//}
+
+
+//
+//int main()
+//{
+//    std::map<std::string, int> map;
+//    map["Andi"] = 1;
+//    map["Mepe"] = 2;
+//    map["Fendt"] = 3;
+//    map["Best"] = 5;
+//    
+//    //using namespace to shorten things
+//    
+//    using Scoremap = std::map<std::string, int>;
+//    //iterating through the map
+//    //1 using iterator
+//    
+//    for(Scoremap::iterator it = map.begin(); it != map.end(); it++)
+//    {
+//        auto& key = it->first;
+//        auto& value = it->second;
+//        std::cout << key << " = " << value << std::endl; //Prints out ordered by first letter of Key!!! A.. B.. F.. M
+//    }
+//    
+//    //2 using auto range loop
+//    
+//    for(auto kv : map)
+//    {
+//        auto& key = kv.first;
+//        auto& value = kv.second;
+//        std::cout << key << " = " << value << std::endl;
+//    }
+//    
+//    //3 using structured bindings - decomposition declaration as of c++ 17
+//    
+//    for(auto [key, value]:map)
+//        std::cout << key << " = " << value << std::endl;
+//    return 0;
+//}
+
+
 //MARK: function stuff and how constructor works
-int main(){
-    
-    std::cout << add(3,4);
-    Object obj1;
-    std::cout << obj1.multi(2,3) << std::endl;
-    obj1.print(12, 22);
-    
-}
+//int main(){
+//
+//    std::cout << add(3,4);
+//    Object obj1;
+//    std::cout << obj1.multi(2,3) << std::endl;
+//    obj1.print(12, 22);
+//
+//}
 //int main(){
 //    int x = 4;
 //    while(x > -3 && std::cout << x--){
@@ -94,7 +196,7 @@ int main(){
 //}
 //
 //
-////MARK: Pointers and reference
+///MARK: Pointers and reference
 //
 ////pointers and reference
 // int main(){
