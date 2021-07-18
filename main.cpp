@@ -6,6 +6,11 @@
 #include <map>
 #include <vector>
 #include <sstream>
+#include "Student.hpp"
+#include "ShapeBox.h"
+#include <algorithm>
+#include <cmath>
+#include <iomanip>
 
 
 //MARK: Vectors
@@ -74,35 +79,37 @@
 //    map["Mepe"] = 2;
 //    map["Fendt"] = 3;
 //    map["Best"] = 5;
-//    
+//
 //    //using namespace to shorten things
-//    
+//
 //    using Scoremap = std::map<std::string, int>;
 //    //iterating through the map
 //    //1 using iterator
-//    
+//
 //    for(Scoremap::iterator it = map.begin(); it != map.end(); it++)
 //    {
 //        auto& key = it->first;
 //        auto& value = it->second;
 //        std::cout << key << " = " << value << std::endl; //Prints out ordered by first letter of Key!!! A.. B.. F.. M
 //    }
-//    
+//
 //    //2 using auto range loop
-//    
+//
 //    for(auto kv : map)
 //    {
 //        auto& key = kv.first;
 //        auto& value = kv.second;
 //        std::cout << key << " = " << value << std::endl;
 //    }
-//    
+//
 //    //3 using structured bindings - decomposition declaration as of c++ 17
-//    
+//
 //    for(auto [key, value]:map)
 //        std::cout << key << " = " << value << std::endl;
 //    return 0;
 //}
+
+
 
 
 //MARK: function stuff and how constructor works
@@ -119,6 +126,171 @@
 //    while(x > -3 && std::cout << x--){
 //    }
 //}
+
+//std::string date_convert(std::string &str)
+//{
+//    std::size_t found1 = str.find_first_of("/");
+//    std::size_t found2 = str.find_last_of("/");
+//
+//    for(unsigned int i = 0; i < str.size(); i++)
+//        {
+//            if((str[i] <= '9' && str[i] >= '1') || str[i] == '/')
+//            {
+//
+//            if(found1 == 1 && found2 == 4)
+//                        {
+//                            char b, x, y;
+//                            b = str[i];
+//                            x = str[i+2];
+//                            y = str[i+3];
+//                            str[i] = x;
+//                            str[i+1] = y;
+//                            str[i+2] = '/';
+//                            str[i+3] = b;
+//
+//                            break;
+//                        }
+//           else if(found1 == 1 && found2 == 3)
+//                        {
+//                            char b, x;
+//                            b = str[i];
+//                            x = str[i+2];
+//                            str[i] = x;
+//                            str[i+2] = b;
+//
+//                            break;
+//                        }
+//            else if(found1 == 2 && found2 == 4)
+//            {
+//                char b, c, x;
+//                b = str[i];
+//                c = str[i+1];
+//                x = str[i+3];
+//                str[i+2] = b;
+//                str[i+3] = c;
+//                str[i+1] = '/';
+//                str[i] = x;
+//                break;
+//            }
+//            else if(found1 == 2 && found2 == 5)
+//            {
+//                char b, c, x, y;
+//                b = str[i];
+//                c = str[i+1];
+//                x = str[i+3];
+//                y = str[i+4];
+//                str[i+3] = b;
+//                str[i+4] = c;
+//                str[i+1] = y;
+//                str[i] = x;
+//                break;
+//            }
+//
+//
+//        }
+//
+//        //month names
+//        else
+//            if(str[i] == 'J' && str[i+1] == 'a') //January
+//            {
+//                str.replace(str.end()-6, str.end()-4, "/1/");
+//                str.erase(str.begin(), str.begin()+8);
+//                break;
+//            }
+//            else
+//                if(str[i] == 'F') //Febuary
+//                {
+//                    str.replace(str.end()-6, str.end()-4, "/2/");
+//                    str.erase(str.begin(), str.begin()+8);
+//                    break;
+//                }
+//                else
+//                    if(str[i] == 'M' && str[i+1] == 'a' && str[i+2] == 'r') //March
+//                    {
+//                        str.replace(str.end()-6, str.end()-4, "/3/");
+//                        str.erase(str.begin(), str.begin()+7);
+//                        break;
+//                    }
+//                    else
+//                        if(str[i] == 'A' && str[i+1] == 'p') //April
+//                        {
+//                            str.replace(str.end()-6, str.end()-4, "/4/");
+//                            str.erase(str.begin(), str.begin()+6);
+//                            break;
+//                        }
+//                        else
+//                            if(str[i] == 'M' && str[i+1] == 'a' && str[i+2] == 'y') //May
+//                            {
+//                                str.replace(str.end()-6, str.end()-4, "/5/");
+//                                str.erase(str.begin(), str.begin()+4);
+//                                break;
+//                            }
+//                            else
+//                                if(str[i] == 'J' && str[i+1] == 'u' && str[i+2] == 'n') //June
+//                                {
+//                                    str.replace(str.end()-6, str.end()-4, "/6/");
+//                                    str.erase(str.begin(), str.begin()+5);
+//                                    break;
+//                                }
+//                                else
+//                                    if(str[i] == 'J' && str[i+1] == 'u' && str[i+2] == 'l') //July
+//                                    {
+//                                        str.replace(str.end()-6, str.end()-4, "/7/");
+//                                        str.erase(str.begin(), str.begin()+5);
+//                                        break;
+//                                    }
+//                                    else
+//                                        if(str[i] == 'A' && str[i+1] == 'u') //August
+//                                        {
+//                                            str.replace(str.end()-6, str.end()-4, "/8/");
+//                                            str.erase(str.begin(), str.begin()+7);
+//                                            break;
+//                                        }
+//                                        else
+//                                            if(str[i] == 'S') //September
+//                                            {
+//                                                str.replace(str.end()-6, str.end()-4, "/9/");
+//                                                str.erase(str.begin(), str.begin()+10);
+//                                                break;
+//                                            }
+//                                            else
+//                                                if(str[i] == 'O') //October
+//                                                {
+//                                                    str.replace(str.end()-6, str.end()-4, "/10/");
+//                                                    str.erase(str.begin(), str.begin()+8);
+//                                                    break;
+//                                                }
+//                                                else
+//                                                    if(str[i] == 'N') //November
+//                                                    {
+//                                                        str.replace(str.end()-6, str.end()-4, "/11/");
+//                                                        str.erase(str.begin(), str.begin()+9);
+//                                                        break;
+//                                                    }
+//                                                    else
+//                                                        if(str[i] == 'D') //December
+//                                                        {
+//                                                            str.replace(str.end()-6, str.end()-4, "/12/");
+//                                                            str.erase(str.begin(), str.begin()+9);
+//                                                            break;
+//                                                        }
+//
+//    }
+//
+//    return str;
+//}
+//
+//int main()
+//{
+//
+//    std::string test = "December 23, 2001";
+//
+//    std::cout << date_convert(test);
+//
+//}
+
+
+
 //MARK: Increments ints
 
 //int main(){
@@ -127,7 +299,7 @@
 //    std::cout << b;
 //    int a = y++;
 //    std::cout << a;
-//
+//    //output: 32
 //}
 
 //MARK: Loops of all kinds
@@ -283,6 +455,37 @@
 //     //output: 2345, d */
 
 //MARK: CLasses
+//
+//class Entity
+//{
+//public:
+//    int x, y; //reference these members with this!
+//
+//    Entity(int x, int y)
+//    {
+//        this->x = x;
+//        (*this).y = y; //another way of referencing it
+//    }
+//
+//};
+//
+//int main()
+//{
+//
+// Entity(3,4);
+//
+//    std::cin.get();
+//}
+
+//int main()
+//{
+//    Student student1;
+//    student1.setName("Andi");
+//    student1.setId(1);
+//    student1.setGradDate(1998);
+//    student1.print(); //prints all the set data
+//    std::cout << student1.getName(); //prints only the students name
+//}
 
    /* class Base {
     protected:
@@ -295,6 +498,7 @@
             std::cout << x;
         }
     };
+    
 int main(){
     Derived d;
     d.func();
@@ -307,12 +511,14 @@ public:
         std::cout << 1;
     }
 };
+ 
 class B: A{
 public:
     ~B(){
         std::cout <<3;
     }
 };
+ 
 int main(){
     B obj;
 } Output: 31 because destructor comes last (~for B optional!)*/
@@ -340,34 +546,53 @@ int main(){
 //
 
 /**************************/
-/*#define x 5+2
-int main(){
-    int i;
-    i = x*x;
-    std::cout << i;
-    return 0;
-} //Output: 17 because 5+2*5+2 = 17!!
-*/
+//#define x 5+2
+//int main(){
+//    int i;
+//    i = x*x;
+//    std::cout << i;
+//    return 0;
+//} //Output: 17 because 5+2*5+2 = 17!!
+//
 
+//int main()
+//{
+//    ShapeBox box1(4,5);
+//    ShapeBox box2(6,3);
+//
+//    if(box1.compareWithThis(box2))
+//    {
+//        std::cout << "Box 1 is bigger than box 2" << std::endl;
+//    }
+//    else
+//        std::cout << "Box 2 is bigger than box 1" << std::endl;
+//
+//    if(box1.compare(box2))
+//    {
+//        std::cout << "Box 1 is bigger than box 2" << std::endl;
+//    }
+//    else
+//        std::cout << "Box 2 is bigger than box 1" << std::endl;
+//}
 
 //MARK: Templates
-/*
-template<typename T>
-void fun(const T& x) {
-    static int i = 1;
-    std::cout << ++i;
-    return;
-}
-int main(){
-   // fun<int>(1);
-    //fun<double>(1);
-    fun<int>(2);
-    fun<int>(2);
-    fun<float>(4);
-    fun<int>(6);
-    fun<int>(3);
-    return 0;
-} output: 232456 because const T& x, everytime it gets called with same parameter it adds up */
+
+//template<typename T>
+//void fun(const T& x) {
+//    static int i = 1;
+//    std::cout << ++i;
+//    return;
+//}
+//int main(){
+//    fun<int>(1);
+//    fun<double>(1);
+//    fun<int>(2);
+//    fun<int>(2);
+//    fun<float>(1);
+//    fun<int>(1);
+//    fun<int>(1);
+//    return 0;
+//} //output: 2232456 because const T& x, everytime it gets called with same parameter it adds up, value in brackets does not matter!
 
 //MARK: conversion of char to int
 //int main() {
@@ -393,6 +618,33 @@ int main(){
 //
 //}
 
+//std::string seriesSum(int n)
+//{
+//    double sum = 1.0;
+//    double count = 4.0;
+//    std::string str;
+//  if(n == 0)
+//  str ="0.00";
+//  else
+//  {
+//      for(double i = 1; i < n; i++)
+//            {
+//            sum+=(1.0/count);
+//            count+=3.0;
+//           }
+//      sum = std::round(sum*100)/100;
+//      str = std::to_string(sum);
+//      str.erase(str.begin()+4, str.end());
+//  }
+//    return str;
+//}
+//
+//int main()
+//{
+//    std::cout << seriesSum(5);
+//}
+
+
 //MARK:Strings and Chars
 
 //int main(){
@@ -404,3 +656,120 @@ int main(){
 //    char s[] = "ho";
 //    std::cout << (s==t);
 //}
+
+
+//Find middle characters in string
+//std::string get_middle(std::string str)
+//{
+//    std::string str1;
+//
+//    if(str.size()%2 == 0)
+//    {
+//        str1 = str.substr((str.size()/2)-1,2);
+//        return str1;
+//    }
+//
+//    else
+//        str1 = str.substr(str.size()/2, 1);
+//        return str1;
+//
+//}
+//int main()
+//{
+//    std::string test = "testtes";
+//   std::cout << get_middle(test);
+//}
+
+//function to reverse alphabetical order in lower case!
+//void letter(char &c)
+//{
+//    int x = 0;
+//    if((int)c >=65 && (int)c <=92)
+//    {
+//        x = 90 -((int)c-97);
+//    }
+//    else if (c == ' '){
+//        std::cout << ' ';
+//    }
+//   else
+//   {
+//       x = 122 - ((int)c - 97);
+//   }
+//    std::cout << (char)x;
+//}
+//int main()
+//{
+//    std::string str = "Hello Uou";
+//    std::string test;
+//    std::getline(std::cin, test);
+//
+//    for(int i = 0; i < test.size(); i++)
+//    {
+//        letter(test[i]);
+//    }
+//
+//}
+
+
+//Use of stringstream - automatically tokenizes a string at space! - using vector function
+//std::vector<std::string> split(std::string strToSplit, char delimeter)
+//{
+//    std::stringstream ss(strToSplit);
+//    std::string item;
+//    std::vector<std::string> splittedStrings;
+//    while (std::getline(ss, item, delimeter))
+//    {
+//       splittedStrings.push_back(item);
+//    }
+//    reverse(splittedStrings.begin(), splittedStrings.end());
+//
+//    return splittedStrings;
+//}
+//int main()
+//{
+//    std::string str = "This is  a test";
+//    reverse(str.begin(), str.end());
+//
+//   std::vector<std::string> after = split(str, ' ');
+//
+//    for(auto it = after.begin(); it != after.end(); it++)
+//    {
+//        std::cout << *it << " ";
+//    }
+//    //Output: separate words in reverse letters
+//
+//}
+
+//Solution function - returns string
+//std::string reverse_words(std::string str)
+//{
+//  std::string out;
+//  std::string cword;
+//  for (char &c : str) {
+//    if (c == ' ') {
+//      out += cword;
+//      out += c;
+//      cword = "";
+//      continue;
+//    }
+//    cword = c + cword;
+//  }
+//  out += cword;
+//  return out;
+//}
+//
+//int main()
+//{
+//    std::string str = "What a  string!";
+//    std::cout << reverse_words(str);
+//}
+
+
+int main()
+{
+    std::string str1 = "Hello";
+    std::string str2 = "World";
+
+    str1+=str2;
+    std::cout << str1;
+}
