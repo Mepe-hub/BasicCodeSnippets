@@ -37,6 +37,40 @@
 //    return 0;
 //}
 
+//int main()
+//{
+//    std::string str1 = "xxxGGxx$xxGxxTxGx";
+//
+//    std::vector<char> vec;
+//    std::vector<char>::iterator it;
+//    bool alarm = false;
+//    
+//    for(auto &ch:str1)
+//    {
+//        if(ch == 'G' || ch == '$' || ch == 'T')
+//        {
+//            vec.push_back(ch);
+//        }
+//    }
+//    
+//    for(it = vec.begin(); it!= vec.end(); it++)
+//    {
+//        
+//        if(*it == '$' && *(it+1) == 'T')
+//            alarm = true;
+//        else if (*it == 'T' && *(it+1) == '$')
+//            alarm = true;
+//    
+//    }
+//    
+//    if(alarm)
+//        std::cout << "ALARM";
+//    else
+//        std::cout << "quiet";
+//    
+//}
+
+
 ///MARK: Maps and vectors
 //
 //int main()
@@ -108,6 +142,29 @@
 //        std::cout << key << " = " << value << std::endl;
 //    return 0;
 //}
+
+/*bool isValidWalk(std::vector<char> walk) {
+
+  std::vector<char>::iterator it;
+  int count = 0;
+  for(it = walk.begin(); it!= walk.end(); it++)
+    {
+    count++;
+  }
+  
+  if(count < 10 || count > 10)
+    {
+     return false;
+  }
+    
+  else
+  return true;
+}
+int main(){
+    std::vector<char> walk = {'n','w','n','n','n','n','n','n','n','n' };
+    std::cout<<isValidWalk(walk);
+
+}*/
 
 
 
@@ -368,6 +425,16 @@
 //}
 //
 //
+
+/*int main()
+{
+    int a[4] = {0,1,2,3};
+    a[1] = *(a+2);
+    *(a+2) = a[3]++;
+    std::cout << a[1] + a[2];
+} //output = 5
+*/
+
 ///MARK: Pointers and reference
 //
 ////pointers and reference
@@ -621,7 +688,7 @@ int main(){
 //std::string seriesSum(int n)
 //{
 //    double sum = 1.0;
-//    double count = 4.0;
+//    double mypos = 4.0;
 //    std::string str;
 //  if(n == 0)
 //  str ="0.00";
@@ -629,8 +696,8 @@ int main(){
 //  {
 //      for(double i = 1; i < n; i++)
 //            {
-//            sum+=(1.0/count);
-//            count+=3.0;
+//            sum+=(1.0/mypos);
+//            mypos+=3.0;
 //           }
 //      sum = std::round(sum*100)/100;
 //      str = std::to_string(sum);
@@ -645,7 +712,54 @@ int main(){
 //}
 
 
-//MARK:Strings and Chars
+//New Driver's licence problem - stringstream token to vector
+//int main()
+//{
+//    std::string name = "Bfl";
+//    int agents = 2;
+//    std::string str = "Bob Jim Becky Pat";
+//    int mypos = 1;
+//    std::stringstream ss(str); //convert my_string into string stream
+//
+//      std::vector<std::string> tokens;
+//      std::string temp_str;
+//    tokens.push_back(name);
+//
+//      while(getline(ss, temp_str, ' ')){ //use comma as delim for cutting string
+//         tokens.push_back(temp_str);
+//      }
+//    sort(tokens.begin(), tokens.end());
+//
+//      for(int i = 0; i < tokens.size(); i++) {
+//         if(tokens[i] == name)
+//             break;
+//          mypos++;
+//          std::cout << tokens[i] << std::endl;
+//      }
+//
+//    switch(agents){
+//        case 1:   std::cout << mypos*20;
+//            break;
+//        case 2: if(mypos == 5) std::cout << 60;
+//                else if (mypos == 4 || mypos == 3) std::cout << 40;
+//                else std::cout << 20;
+//            break;
+//        case 3: if(mypos == 5 || mypos == 4) std::cout << 40;
+//                else std::cout << 20;
+//            break;
+//        case 4:
+//                if(mypos == 5) std::cout << 40;
+//                else std::cout << 20;
+//                break;
+//        case 5: std::cout << 20;
+//            break;
+//    }
+//
+//
+//}
+
+
+//MARK: Strings and Chars
 
 //int main(){
 //    std::string x = "hi";
@@ -764,12 +878,18 @@ int main(){
 //    std::cout << reverse_words(str);
 //}
 
+// Comparing strings - anagrams
 
-int main()
-{
-    std::string str1 = "Hello";
-    std::string str2 = "World";
+//int main(){
+//
+//    std::string str = "HellJOpsiw";
+//    std::string str1 = "jhollpesiw";
+//    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+//    sort(str.begin(), str.end());
+//
+//    sort(str1.begin(), str1.end());
+//
+//    std::cout << bool(str == str1);
+//
+//}
 
-    str1+=str2;
-    std::cout << str1;
-}
